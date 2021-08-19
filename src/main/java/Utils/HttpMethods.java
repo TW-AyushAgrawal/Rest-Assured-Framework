@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import java.io.File;
 import java.util.Map;
 
-public class HttpMethods {
+public class HttpMethods   {
 
     RequestSpecification httpRequest;
     Response response;

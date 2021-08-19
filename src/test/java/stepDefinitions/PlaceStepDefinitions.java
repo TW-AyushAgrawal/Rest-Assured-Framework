@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import Utils.BaseTest;
+import Utils.Properties;
 import Utils.RequestResponseSpecBuilder;
 import data.TestDataBuilder;
 import enums.APIResources;
@@ -26,8 +27,9 @@ public class PlaceStepDefinitions extends BaseTest {
     @Given("Add User payload")
     public void add_place_payload() throws IOException {
         data = new TestDataBuilder();
-        requestSpecification = RequestResponseSpecBuilder.getRequestSpec();
-        responseSpecification = RequestResponseSpecBuilder.getResponseSpec();
+        prop= new Properties();
+        requestSpecification = new RequestResponseSpecBuilder().getRequestSpec();
+        responseSpecification = new RequestResponseSpecBuilder().getResponseSpec();
         requestSpecification = given()
                 .spec(requestSpecification);
 
@@ -43,8 +45,7 @@ public class PlaceStepDefinitions extends BaseTest {
                 .spec(responseSpecification)
                 .extract()
                 .response();
-        JsonPath jsonPath = new JsonPath(response.asString());
-        id = jsonPath.getString("id");
+        id = response.jsonPath().getString("id");
     }
 
     @Then("API call should be successful with status code {int}")

@@ -14,7 +14,7 @@ public class ReusableStepDefinition extends BaseTest {
 
     @Given("User have valid endpoint {string}")
     public void setEndpoint(String requestType) throws Throwable {
-        prop = Properties.getInstance();
+        prop = new Properties();
         mapper = new ObjectMapper();
         data = new TestDataBuilder();
         endpoint = APIResources.valueOf(requestType).getResource();
@@ -29,7 +29,7 @@ public class ReusableStepDefinition extends BaseTest {
 
     @When("User calls {string} to delete newly created user for {string}")
     public void userCallsReqResApiToDeleteTheUser(String requestType, String deleteKey) {
-        newlyCreatedId = response.jsonPath().get("id");
+        newlyCreatedId = response.jsonPath().getString("id");
         response = httpService.deleteWithPathParam(deleteKey, newlyCreatedId, APIResources.valueOf(requestType).getResource());
         System.out.println("Response is " + response.prettyPrint());
     }

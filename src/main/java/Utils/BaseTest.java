@@ -7,6 +7,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
+import java.io.PrintStream;
+
 public abstract class BaseTest {
     public static Response response;
     public static String endpoint;
@@ -16,5 +18,6 @@ public abstract class BaseTest {
     public static TestDataBuilder data;
     public static RequestSpecification requestSpecification;
     public static ResponseSpecification responseSpecification;
+    public static PrintStream logFile;
 }
 

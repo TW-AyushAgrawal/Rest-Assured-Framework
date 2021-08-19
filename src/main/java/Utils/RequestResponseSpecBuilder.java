@@ -13,38 +13,49 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 
-public class RequestResponseSpecBuilder {
-    private static RequestSpecification req;
-    private static ResponseSpecification res;
-    private static PrintStream logFile;
+public class RequestResponseSpecBuilder extends BaseTest {
 
-    static {
-        try {
-            logFile = FileHandler.getInstance().getLogFile();
-        } catch (FileNotFoundException e) {
+//    private static RequestSpecification req;
+//    private static ResponseSpecification res;
+//    private static PrintStream logFile;
+
+//    static {
+//        try {
+//            logFile = FileHandler.getInstance().getLogFile();
+//            Properties prop= new Properties();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public RequestResponseSpecBuilder()  {
+        try{
+            logFile = new FileHandler().getLogFile();
+        }catch (FileNotFoundException e){
             e.printStackTrace();
         }
+
     }
 
-    public static RequestSpecification getRequestSpec() throws IOException {
-        if (req == null) {
-            req = new RequestSpecBuilder()
-                    .setBaseUri(Properties.getInstance().getProperty("base_url"))
+    public  RequestSpecification getRequestSpec() throws IOException {
+        if (requestSpecification == null) {
+            requestSpecification = new RequestSpecBuilder()
+                    .setBaseUri(prop.getProperty("base_url"))
                     .setContentType(ContentType.JSON)
                     .addFilter(RequestLoggingFilter.logRequestTo(logFile))
                     .addFilter(ResponseLoggingFilter.logResponseTo(logFile))
                     .build();
         }
-        return req;
+        return requestSpecification;
     }
 
-    public static ResponseSpecification getResponseSpec() {
-        if (res == null) {
-            res = new ResponseSpecBuilder()
+    public  ResponseSpecification getResponseSpec() {
+        if (responseSpecification == null) {
+            responseSpecification = new ResponseSpecBuilder()
                     .expectContentType(ContentType.JSON)
                     .setDefaultParser(Parser.JSON)
                     .build();
         }
-        return res;
+        return responseSpecification;
     }
 }
