@@ -25,11 +25,11 @@ public class ReusableStepDefinition extends BaseTest {
     public void setRequestBodyParams(String name, String job) {
         response = httpService.post(data.getPostUserData(name, job),
                 endpoint);
-        newlyCreatedId = response.jsonPath().get("id");
     }
 
     @When("User calls {string} to delete newly created user for {string}")
     public void userCallsReqResApiToDeleteTheUser(String requestType, String deleteKey) {
+        newlyCreatedId = response.jsonPath().get("id");
         response = httpService.deleteWithPathParam(deleteKey, newlyCreatedId, APIResources.valueOf(requestType).getResource());
         System.out.println("Response is " + response.prettyPrint());
     }
