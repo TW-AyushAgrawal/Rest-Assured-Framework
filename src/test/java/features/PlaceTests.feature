@@ -1,5 +1,5 @@
 Feature: Validate request/response to Users API
-
+  @AddOnly
   Scenario Outline: Should be able to add a user
     Given Add User payload
     When User calls ReqRes api with "POST_USER_REQUEST" with "<name>" and "<job>"
@@ -12,6 +12,7 @@ Feature: Validate request/response to Users API
       | morpheus | leader       |
       | mobius   | practitioner |
 
+  @AddAndDelete
   Scenario Outline: Should be able to delete a user
     Given Add User payload
     And User calls ReqRes api with "POST_USER_REQUEST" with "<name>" and "<job>"
@@ -21,7 +22,7 @@ Feature: Validate request/response to Users API
       | name     | job    |
       | morpheus | leader |
 
-  @AddUser
+  @Add_Delete
   Scenario Outline: Should be able to add a user
     Given User have valid endpoint "POST_USER_REQUEST"
     When User request with json request payload for "<name>" and "<job>"
