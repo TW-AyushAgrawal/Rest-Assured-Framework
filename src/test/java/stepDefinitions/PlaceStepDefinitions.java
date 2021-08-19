@@ -54,8 +54,7 @@ public class PlaceStepDefinitions extends BaseTest {
 
     @Then("{string} in status response should be {string}")
     public void in_status_response_should_be(String param, String value) {
-        JsonPath jsonPath = new JsonPath(response.asString());
-        assertEquals(value, jsonPath.getString(param));
+        assertEquals(value, response.jsonPath().getString(param));
     }
 
     @When("User calls ReqRes api with {string} to delete the user")
