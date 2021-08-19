@@ -23,13 +23,15 @@ Feature: Validate request/response to Users API
 
   @AddUser
   Scenario Outline: Should be able to add a user
-    Given User have valid endpoint "<AddUser>"
-    When User request with json request payload for "AddUser.json"
-    Then User should receive the following response value "name" should be "<name>", "job" should be "<job>" and 201 statusCode
-    When User calls "<deleteEndpoint>" to delete newly created user for "<deleteKey>"
+    Given User have valid endpoint "POST_USER_REQUEST"
+    When User request with json request payload for "<name>" and "<job>"
+    Then API call should be successful with status code 201
+    And "name" in status response should be "<name>"
+    And "job" in status response should be "<job>"
+    When User calls "DELETE_USER_REQUEST" to delete newly created user for "<deleteKey>"
     Then API call should be successful with status code 204
 
     Examples:
-      | AddUser     | name  | job    | deleteEndpoint  |deleteKey|
-      | /api/users/ | Ayush | leader | /api/users/{id} |id       |
+      | name  | job    | deleteKey |
+      | Ayush | leader | id        |
 

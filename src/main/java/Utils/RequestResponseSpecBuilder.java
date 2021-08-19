@@ -27,7 +27,7 @@ public class RequestResponseSpecBuilder {
     }
 
     public static RequestSpecification getRequestSpec() throws IOException {
-        if(req == null){
+        if (req == null) {
             req = new RequestSpecBuilder()
                     .setBaseUri(Properties.getInstance().getProperty("base_url"))
                     .setContentType(ContentType.JSON)
@@ -38,8 +38,8 @@ public class RequestResponseSpecBuilder {
         return req;
     }
 
-    public static ResponseSpecification getResponseSpec(){
-        if(res == null){
+    public static ResponseSpecification getResponseSpec() {
+        if (res == null) {
             res = new ResponseSpecBuilder()
                     .expectContentType(ContentType.JSON)
                     .setDefaultParser(Parser.JSON)

@@ -7,7 +7,7 @@ public enum APIResources {
 
     private String resource;
 
-    APIResources(String resource){
+    APIResources(String resource) {
         this.resource = resource;
     }
 

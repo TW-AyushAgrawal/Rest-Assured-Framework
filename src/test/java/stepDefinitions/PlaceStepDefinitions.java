@@ -1,29 +1,24 @@
 package stepDefinitions;
 
-import Utils.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import data.TestDataBuilder;
+import Utils.BaseTest;
+import Utils.RequestResponseSpecBuilder;
 import enums.APIResources;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import org.junit.Assert;
 
-import java.io.File;
 import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
-public class PlaceStepDefinitions extends BaseTest  {
+public class PlaceStepDefinitions extends BaseTest {
     RequestSpecification requestSpecification;
     ResponseSpecification responseSpecification;
-    TestDataBuilder data = new TestDataBuilder();
+    //TestDataBuilder data = new TestDataBuilder();
     RequestSpecification request;
     //Response response;
     String id;
@@ -34,22 +29,19 @@ public class PlaceStepDefinitions extends BaseTest  {
         requestSpecification = RequestResponseSpecBuilder.getRequestSpec();
         responseSpecification = RequestResponseSpecBuilder.getResponseSpec();
         request = given()
-                    .spec(requestSpecification);
-
-
-
+                .spec(requestSpecification);
     }
 
     @When("User calls ReqRes api with {string} with {string} and {string}")
     public void user_calls_req_res_api_with_with_and(String requestType, String name, String job) {
         response = request
-                    .body(data.getPostUserData(name, job))
-                    .when()
-                    .post(APIResources.valueOf(requestType).getResource())
-                    .then()
-                    .spec(responseSpecification)
-                    .extract()
-                    .response();
+                .body(data.getPostUserData(name, job))
+                .when()
+                .post(APIResources.valueOf(requestType).getResource())
+                .then()
+                .spec(responseSpecification)
+                .extract()
+                .response();
         JsonPath jsonPath = new JsonPath(response.asString());
         id = jsonPath.getString("id");
     }
@@ -75,4 +67,4 @@ public class PlaceStepDefinitions extends BaseTest  {
                 .extract()
                 .response();
     }
-    }
+}

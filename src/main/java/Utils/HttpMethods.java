@@ -13,6 +13,7 @@ public class HttpMethods {
     RequestSpecification httpRequest;
     Response response;
 
+
     public HttpMethods(String baseURL) {
         RestAssured.baseURI = baseURL;
 
@@ -26,7 +27,7 @@ public class HttpMethods {
 
     }
 
-    public Response post(File jsonPayload, String endPoint) {
+    public Response post(Object jsonPayload, String endPoint) {
         httpRequest.body(jsonPayload).log().all();
         response = httpRequest.request(Method.POST, endPoint);
         response.prettyPrint();
