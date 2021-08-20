@@ -1,8 +1,8 @@
 package factory;
 
+import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public final class RequestFactory {
 
     private static final Map<String, BiFunction> MAP = new HashMap();
 
-    public static final BiFunction<RequestSpecification,String, Response> DELETE = (requestSpecification, endPoint) -> requestSpecification.request(Method.DELETE, endPoint);
+    public static final BiFunction<String, String, Response> DELETE = (param, endPoint) -> RestAssured.given().pathParams("id",param).request(Method.DELETE, endPoint);
 
     static {
         MAP.put("DELETE_USER_REQUEST", DELETE);

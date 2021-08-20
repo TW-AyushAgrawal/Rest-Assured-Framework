@@ -46,7 +46,6 @@ public class ReusableStepDefinition extends BaseTest {
 
     @When("User calls {string} with {string}")
     public void userCallsWith(String requestType, String params) {
-        requestSpecification.pathParams("id", params).log().all();
-        response = (Response) RequestFactory.executeRequest(requestType).apply(requestSpecification, APIResources.valueOf(requestType).getResource());
+        response = (Response) RequestFactory.executeRequest(requestType).apply(params, APIResources.valueOf(requestType).getResource());
     }
 }
