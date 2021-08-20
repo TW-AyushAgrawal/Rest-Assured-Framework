@@ -48,8 +48,8 @@ public class PlaceStepDefinitions extends BaseTest {
         id = response.jsonPath().getString("id");
     }
 
-    @Then("API call should be successful with status code {int}")
-    public void api_call_should_be_successful_with_status_code(int statusCode) {
+    @Then("API call should return status code {int}")
+    public void api_call_should_return_status_code(int statusCode) {
         assertEquals(statusCode, response.statusCode());
     }
 
