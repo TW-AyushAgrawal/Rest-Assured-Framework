@@ -29,10 +29,10 @@ Feature: Validate request/response to Users API
     Then API call should return status code 201
     And "name" in status response should be "<name>"
     And "job" in status response should be "<job>"
-    When User calls "DELETE_USER_REQUEST" to delete newly created user for "<deleteKey>"
+    When User calls "DELETE_USER_REQUEST" with "744"
     Then API call should return status code 204
 
     Examples:
-      | name  | job    | deleteKey |
-      | Ayush | leader | id        |
+      | name  | job    |
+      | Ayush | leader |
 

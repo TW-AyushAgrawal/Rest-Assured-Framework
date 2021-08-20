@@ -6,8 +6,14 @@ import Utils.Properties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.TestDataBuilder;
 import enums.APIResources;
+import factory.RequestFactory;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+
+import static org.junit.Assert.assertEquals;
 
 public class ReusableStepDefinition extends BaseTest {
     private static String newlyCreatedId;
@@ -31,5 +37,16 @@ public class ReusableStepDefinition extends BaseTest {
     public void userCallsReqResApiToDeleteTheUser(String requestType, String deleteKey) {
         newlyCreatedId = response.jsonPath().getString("id");
         response = httpService.deleteWithPathParam(deleteKey, newlyCreatedId, APIResources.valueOf(requestType).getResource());
+    }
+
+    @Then("API call should return status code {int}")
+    public void api_call_should_return_status_code(int statusCode) {
+        assertEquals(statusCode, response.statusCode());
+    }
+
+    @When("User calls {string} with {string}")
+    public void userCallsWith(String requestType, String params) {
+        requestSpecification.pathParams("id", params).log().all();
+        response = (Response) RequestFactory.executeRequest(requestType).apply(requestSpecification, APIResources.valueOf(requestType).getResource());
     }
 }
