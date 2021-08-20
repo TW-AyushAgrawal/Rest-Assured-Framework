@@ -38,24 +38,20 @@ public class RequestResponseSpecBuilder extends BaseTest {
     }
 
     public  RequestSpecification getRequestSpec() throws IOException {
-        if (requestSpecification == null) {
             requestSpecification = new RequestSpecBuilder()
                     .setBaseUri(prop.getProperty("base_url"))
                     .setContentType(ContentType.JSON)
                     .addFilter(RequestLoggingFilter.logRequestTo(logFile))
                     .addFilter(ResponseLoggingFilter.logResponseTo(logFile))
                     .build();
-        }
         return requestSpecification;
     }
 
     public  ResponseSpecification getResponseSpec() {
-        if (responseSpecification == null) {
             responseSpecification = new ResponseSpecBuilder()
                     .expectContentType(ContentType.JSON)
                     .setDefaultParser(Parser.JSON)
                     .build();
-        }
         return responseSpecification;
     }
 }
