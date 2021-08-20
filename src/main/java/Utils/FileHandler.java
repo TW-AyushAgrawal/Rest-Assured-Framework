@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 public class FileHandler {
-    private static FileHandler fileHandler;
+//    private static FileHandler fileHandler;
 
 //    public static FileHandler getInstance() {
 //        if (fileHandler == null)
