@@ -17,9 +17,8 @@ public class ReusableStepDefinition extends BaseTest {
 
     @Given("User have valid endpoint")
     public void setEndpoint() throws Throwable {
-        prop = new Properties();
         data = new TestDataBuilder();
-        httpService = new HttpMethods(prop.getProperty("base_url"));
+        httpService = new HttpMethods(Properties.getProperty("base_url"));
     }
 
     @Then("API call should return status code {int}")

@@ -23,7 +23,6 @@ public class RequestResponseSpecBuilder extends BaseTest {
     public static RequestSpecification getRequestSpec() throws IOException {
         if (requestSpecification == null) {
             requestSpecification = new RequestSpecBuilder()
-                    .setBaseUri(prop.getProperty("base_url"))
                     .setContentType(ContentType.JSON)
                     .addFilter(RequestLoggingFilter.logRequestTo(logFile))
                     .addFilter(ResponseLoggingFilter.logResponseTo(logFile))

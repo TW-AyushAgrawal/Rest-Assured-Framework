@@ -14,7 +14,7 @@ public class Properties {
 //        return propertyObj;
 //    }
 
-    public String getProperty(String property) throws IOException {
+    public static String getProperty(String property) throws IOException {
         java.util.Properties properties = new java.util.Properties();
         properties.load(new FileInputStream(System.getProperty("user.dir") + "/src/main/java/application_test.properties"));
         return properties.getProperty(property);
