@@ -10,8 +10,6 @@ import factory.RequestFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.http.Method;
-import io.restassured.response.Response;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,11 +22,6 @@ public class ReusableStepDefinition extends BaseTest {
         data = new TestDataBuilder();
         endpoint = APIResources.valueOf(requestType).getResource();
         httpService = new HttpMethods(prop.getProperty("base_url"));
-    }
-
-    @When("User request with json request payload for {string} and {string}")
-    public void setRequestBodyParams(String name, String job) {
-        response = httpService.post(data.getPostUserData(name, job), endpoint);
     }
 
     @Then("API call should return status code {int}")
