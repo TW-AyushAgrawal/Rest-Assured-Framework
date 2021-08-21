@@ -16,7 +16,6 @@ import io.restassured.response.Response;
 import static org.junit.Assert.assertEquals;
 
 public class ReusableStepDefinition extends BaseTest {
-    private static String newlyCreatedId;
 
     @Given("User have valid endpoint {string}")
     public void setEndpoint(String requestType) throws Throwable {

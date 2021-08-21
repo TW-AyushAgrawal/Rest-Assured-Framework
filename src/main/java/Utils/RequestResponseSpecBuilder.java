@@ -35,12 +35,4 @@ public class RequestResponseSpecBuilder extends BaseTest {
         }
         return requestSpecification;
     }
-
-    public  ResponseSpecification getResponseSpec() {
-            responseSpecification = new ResponseSpecBuilder()
-                    .expectContentType(ContentType.JSON)
-                    .setDefaultParser(Parser.JSON)
-                    .build();
-        return responseSpecification;
-    }
 }

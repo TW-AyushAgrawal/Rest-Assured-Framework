@@ -10,10 +10,6 @@ import java.util.Map;
 
 public class HttpMethods extends BaseTest   {
 
-//    RequestSpecification httpRequest;
-//    Response response;
-
-
     public HttpMethods(String baseURL) {
         RestAssured.baseURI = baseURL;
 
@@ -22,9 +18,7 @@ public class HttpMethods extends BaseTest   {
     }
 
     public void setHeader() {
-
         requestSpecification.header("Content-Type", "application/json");
-
     }
 
     public Response post(Object jsonPayload, String endPoint) {
@@ -51,13 +45,6 @@ public class HttpMethods extends BaseTest   {
     public Response put(File jsonPayload, String endPoint) {
         requestSpecification.body(jsonPayload).log().all();
         response = requestSpecification.request(Method.PUT, endPoint);
-        response.prettyPrint();
-        return response;
-    }
-
-    public Response deleteWithPathParam(String key, String parameter, String endPoint) {
-        requestSpecification.pathParams(key, parameter).log().all();
-        response = requestSpecification.request(Method.DELETE, endPoint);
         response.prettyPrint();
         return response;
     }
