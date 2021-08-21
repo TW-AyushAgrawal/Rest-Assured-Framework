@@ -15,19 +15,6 @@ import java.io.PrintStream;
 
 public class RequestResponseSpecBuilder extends BaseTest {
 
-//    private static RequestSpecification req;
-//    private static ResponseSpecification res;
-//    private static PrintStream logFile;
-
-//    static {
-//        try {
-//            logFile = FileHandler.getInstance().getLogFile();
-//            Properties prop= new Properties();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public RequestResponseSpecBuilder()  {
         try{
             logFile = new FileHandler().getLogFile();
