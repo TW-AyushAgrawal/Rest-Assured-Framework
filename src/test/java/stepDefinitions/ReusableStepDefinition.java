@@ -15,12 +15,10 @@ import static org.junit.Assert.assertEquals;
 
 public class ReusableStepDefinition extends BaseTest {
 
-    @Given("User have valid endpoint {string}")
-    public void setEndpoint(String requestType) throws Throwable {
+    @Given("User have valid endpoint")
+    public void setEndpoint() throws Throwable {
         prop = new Properties();
-        mapper = new ObjectMapper();
         data = new TestDataBuilder();
-        endpoint = APIResources.valueOf(requestType).getResource();
         httpService = new HttpMethods(prop.getProperty("base_url"));
     }
 

@@ -2,7 +2,7 @@ Feature: Validate request/response to Users API
 
   @Add_Delete
   Scenario Outline: Should be able to add a user
-    Given User have valid endpoint "POST_USER_REQUEST"
+    Given User have valid endpoint
     When User calls "POST_USER_REQUEST" with "<name>,<job>"
     Then API call should return status code 201
     And "name" in status response should be "<name>"
