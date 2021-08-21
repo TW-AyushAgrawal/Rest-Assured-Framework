@@ -29,14 +29,7 @@ public class ReusableStepDefinition extends BaseTest {
 
     @When("User request with json request payload for {string} and {string}")
     public void setRequestBodyParams(String name, String job) {
-        response = httpService.post(data.getPostUserData(name, job),
-                endpoint);
-    }
-
-    @When("User calls {string} to delete newly created user for {string}")
-    public void userCallsReqResApiToDeleteTheUser(String requestType, String deleteKey) {
-        newlyCreatedId = response.jsonPath().getString("id");
-        response = httpService.deleteWithPathParam(deleteKey, newlyCreatedId, APIResources.valueOf(requestType).getResource());
+        response = httpService.post(data.getPostUserData(name, job), endpoint);
     }
 
     @Then("API call should return status code {int}")
@@ -46,6 +39,11 @@ public class ReusableStepDefinition extends BaseTest {
 
     @When("User calls {string} with {string}")
     public void userCallsWith(String requestType, String params) {
-        response = (Response) RequestFactory.executeRequest(requestType).apply(params, APIResources.valueOf(requestType).getResource());
+        response = RequestFactory.executeRequest(requestType, params, APIResources.valueOf(requestType).getResource());
+    }
+
+    @Then("{string} in status response should be {string}")
+    public void in_status_response_should_be(String param, String value) {
+        assertEquals(value, response.jsonPath().getString(param));
     }
 }

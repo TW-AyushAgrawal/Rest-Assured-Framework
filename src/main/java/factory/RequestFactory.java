@@ -1,24 +1,42 @@
 package factory;
 
+import Utils.RequestResponseSpecBuilder;
+import data.TestDataBuilder;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.BiFunction;
 
 public final class RequestFactory {
 
-    private static final Map<String, BiFunction> MAP = new HashMap();
+    private RequestFactory() {}
 
-    public static final BiFunction<String, String, Response> DELETE = (param, endPoint) -> RestAssured.given().pathParams("id",param).request(Method.DELETE, endPoint);
+    private static final HashMap<String, BiFunction<String, String, Response>> MAP = new HashMap();
+
+    private static final BiFunction<String, String, Response> DELETE = (arg, endPoint) -> RestAssured.given().pathParams("id",arg).request(Method.DELETE, endPoint);
+    private static final BiFunction<String, String, Response> POST = (args, endPoint) ->
+    {
+        Response response = null;
+        try {
+            response =  RequestResponseSpecBuilder.getRequestSpec()
+                    .body(new TestDataBuilder().getPostUserData(args.split(",")[0], args.split(",")[1]))
+                    .request(Method.POST, endPoint);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    };
 
     static {
         MAP.put("DELETE_USER_REQUEST", DELETE);
+        MAP.put("POST_USER_REQUEST", POST);
     }
 
-    public static BiFunction executeRequest(String requestType){
-        return MAP.get(requestType);
+    public static Response executeRequest(String requestType, String params, String endPoint){
+        return MAP.get(requestType).apply(params, endPoint);
     }
 }

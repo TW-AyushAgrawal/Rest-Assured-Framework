@@ -42,15 +42,9 @@ public class PlaceStepDefinitions extends BaseTest {
                 .when()
                 .post(APIResources.valueOf(requestType).getResource())
                 .then()
-                .spec(responseSpecification)
                 .extract()
                 .response();
         id = response.jsonPath().getString("id");
-    }
-
-    @Then("{string} in status response should be {string}")
-    public void in_status_response_should_be(String param, String value) {
-        assertEquals(value, response.jsonPath().getString(param));
     }
 
     @When("User calls ReqRes api with {string} to delete the user")
