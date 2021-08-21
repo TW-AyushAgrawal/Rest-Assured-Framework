@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import Utils.BaseTest;
+import Utils.FileHandler;
 import Utils.HttpMethods;
 import Utils.Properties;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +18,7 @@ public class ReusableStepDefinition extends BaseTest {
 
     @Given("User have valid endpoint")
     public void setEndpoint() throws Throwable {
+        logFile= FileHandler.getLogFile();
         httpService = new HttpMethods(Properties.getProperty("base_url"));
     }
 

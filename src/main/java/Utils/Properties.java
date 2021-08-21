@@ -5,14 +5,6 @@ import java.io.IOException;
 
 public class Properties {
 
- //   private static Properties propertyObj;
-
-//    public static Properties getInstance() {
-//        if (propertyObj == null) {
-//            propertyObj = new Properties();
-//        }
-//        return propertyObj;
-//    }
 
     public static String getProperty(String property) throws IOException {
         java.util.Properties properties = new java.util.Properties();

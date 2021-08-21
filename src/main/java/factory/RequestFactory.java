@@ -1,16 +1,15 @@
 package factory;
 
-import Utils.RequestResponseSpecBuilder;
+import Utils.BaseTest;
 import data.TestDataBuilder;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.function.BiFunction;
 
-public final class RequestFactory {
+public final class RequestFactory extends BaseTest {
 
     private RequestFactory() {}
 
@@ -20,13 +19,9 @@ public final class RequestFactory {
     private static final BiFunction<String, String, Response> POST = (args, endPoint) ->
     {
         Response response = null;
-        try {
-            response =  RequestResponseSpecBuilder.getRequestSpec()
-                    .body(TestDataBuilder.getPostUserData(args.split(",")[0], args.split(",")[1]))
-                    .request(Method.POST, endPoint);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response =  requestSpecification
+                .body(TestDataBuilder.getPostUserData(args.split(",")[0], args.split(",")[1]))
+                .request(Method.POST, endPoint);
 
         return response;
     };
