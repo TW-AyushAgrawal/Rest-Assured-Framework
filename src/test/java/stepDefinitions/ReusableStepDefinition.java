@@ -17,7 +17,6 @@ public class ReusableStepDefinition extends BaseTest {
 
     @Given("User have valid endpoint")
     public void setEndpoint() throws Throwable {
-        data = new TestDataBuilder();
         httpService = new HttpMethods(Properties.getProperty("base_url"));
     }
 

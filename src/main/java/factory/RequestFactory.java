@@ -22,7 +22,7 @@ public final class RequestFactory {
         Response response = null;
         try {
             response =  RequestResponseSpecBuilder.getRequestSpec()
-                    .body(new TestDataBuilder().getPostUserData(args.split(",")[0], args.split(",")[1]))
+                    .body(TestDataBuilder.getPostUserData(args.split(",")[0], args.split(",")[1]))
                     .request(Method.POST, endPoint);
         } catch (IOException e) {
             e.printStackTrace();
