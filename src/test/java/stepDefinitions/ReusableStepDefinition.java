@@ -1,13 +1,11 @@
 package stepDefinitions;
 
-import Utils.Properties;
-import Utils.RequestSpecBuilder;
 import Utils.ResponseExtractor;
 import contexts.TestContext;
 import enums.APIResources;
 import enums.Context;
 import factory.RequestFactory;
-import io.cucumber.java.Before;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
@@ -45,5 +43,10 @@ public class ReusableStepDefinition {
     @When("User calls {string}")
     public void userCalls(String requestType) {
         response = RequestFactory.executeRequest(requestType, testContext.getScenarioContext().getContext(Context.USER_ID).toString(), APIResources.valueOf(requestType).getResource());
+    }
+
+    @After(value = "@Add_User")
+    public void afterScenario(){
+        RequestFactory.executeRequest("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(Context.USER_ID).toString(), APIResources.valueOf("DELETE_USER_REQUEST").getResource());
     }
 }

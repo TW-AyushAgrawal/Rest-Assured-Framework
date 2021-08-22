@@ -6,8 +6,6 @@ Feature: Validate request/response to Users API
     Then API call should return status code 201
     And "name" in status response should be "<name>"
     And "job" in status response should be "<job>"
-    When User calls "DELETE_USER_REQUEST"
-    Then API call should return status code 204
 
     Examples:
       | name  | job    |
