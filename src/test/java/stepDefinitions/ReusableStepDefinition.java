@@ -1,9 +1,11 @@
 package stepDefinitions;
 
-import Utils.*;
+import Utils.Properties;
+import Utils.RequestSpecBuilder;
+import Utils.ResponseExtractor;
 import enums.APIResources;
 import factory.RequestFactory;
-import io.cucumber.java.en.Given;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
@@ -14,7 +16,7 @@ public final class ReusableStepDefinition {
 
     private Response response;
 
-    @Given("User have valid endpoint")
+    @Before("@Add_User")
     public void setEndpoint() throws Throwable {
         RequestSpecBuilder.initRequestSpec(Properties.getProperty("base_url"));
     }
