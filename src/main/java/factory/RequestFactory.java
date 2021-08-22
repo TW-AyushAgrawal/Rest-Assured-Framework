@@ -16,8 +16,7 @@ public final class RequestFactory {
 
     private static final BiFunction<String, String, Response> DELETE = (arg, endPoint) -> RequestSpecBuilder.getRequestSpec().pathParams("id",arg).request(Method.DELETE, endPoint);
     private static final BiFunction<String, String, Response> POST = (args, endPoint) ->
-            RequestSpecBuilder
-                    .getRequestSpec()
+            RequestSpecBuilder.getRequestSpec()
                     .body(TestDataBuilder.getPostUserData(args.split(",")[0], args.split(",")[1]))
                     .request(Method.POST, endPoint);
 
