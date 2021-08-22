@@ -7,7 +7,6 @@ import contexts.TestContext;
 import enums.APIResources;
 import enums.Context;
 import factory.RequestFactory;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,11 +21,6 @@ public class ReusableStepDefinition {
 
     public ReusableStepDefinition(TestContext context){
         testContext = context;
-    }
-
-    @Before("@Add_User")
-    public void setEndpoint() throws Throwable {
-        RequestSpecBuilder.initRequestSpec(Properties.getProperty("base_url"));
     }
 
     @Then("API call should return status code {int}")
