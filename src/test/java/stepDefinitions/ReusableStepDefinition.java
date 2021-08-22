@@ -4,6 +4,7 @@ import Utils.BaseTest;
 import Utils.FileHandler;
 import Utils.HttpMethods;
 import Utils.Properties;
+import Utils.ResponseExtractor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.TestDataBuilder;
 import enums.APIResources;
@@ -34,6 +35,6 @@ public class ReusableStepDefinition extends BaseTest {
 
     @Then("{string} in status response should be {string}")
     public void in_status_response_should_be(String param, String value) {
-        assertEquals(value, response.jsonPath().getString(param));
+        assertEquals(value, ResponseExtractor.getValue(response, param));
     }
 }
