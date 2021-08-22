@@ -6,14 +6,17 @@ import factory.RequestFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
 
 import static org.junit.Assert.assertEquals;
 
-public class ReusableStepDefinition extends BaseTest {
+public final class ReusableStepDefinition {
+
+    private Response response;
 
     @Given("User have valid endpoint")
     public void setEndpoint() throws Throwable {
-        RequestSpecBuilder.initRequestSpec(Properties.getProperty("base"));
+        RequestSpecBuilder.initRequestSpec(Properties.getProperty("base_url"));
     }
 
     @Then("API call should return status code {int}")
