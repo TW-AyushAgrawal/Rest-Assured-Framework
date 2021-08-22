@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-public class RequestSpecBuilder extends BaseTest {
+public final class RequestSpecBuilder {
 
     private RequestSpecBuilder(){}
 
