@@ -1,12 +1,6 @@
 package stepDefinitions;
 
-import Utils.BaseTest;
-import Utils.FileHandler;
-import Utils.HttpMethods;
-import Utils.Properties;
-import Utils.ResponseExtractor;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import data.TestDataBuilder;
+import Utils.*;
 import enums.APIResources;
 import factory.RequestFactory;
 import io.cucumber.java.en.Given;
@@ -19,8 +13,7 @@ public class ReusableStepDefinition extends BaseTest {
 
     @Given("User have valid endpoint")
     public void setEndpoint() throws Throwable {
-        logFile= FileHandler.getLogFile();
-        httpService = new HttpMethods(Properties.getProperty("base_url"));
+        RequestSpecBuilder.initRequestSpec(Properties.getProperty("base"));
     }
 
     @Then("API call should return status code {int}")
