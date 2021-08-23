@@ -45,8 +45,8 @@ public class ReusableStepDefinition {
         response = RequestFactory.executeRequest(requestType, testContext.getScenarioContext().getContext(Context.USER_ID).toString(), APIResources.valueOf(requestType).getResource());
     }
 
-    @After(value = "@Add_User")
-    public void afterScenario(){
-        RequestFactory.executeRequest("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(Context.USER_ID).toString(), APIResources.valueOf("DELETE_USER_REQUEST").getResource());
-    }
+//    @After(value = "@Add_User")
+//    public void afterScenario(){
+//        RequestFactory.executeRequest("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(Context.USER_ID).toString(), APIResources.valueOf("DELETE_USER_REQUEST").getResource());
+//    }
 }
