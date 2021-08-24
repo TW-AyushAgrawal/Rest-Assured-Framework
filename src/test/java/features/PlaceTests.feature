@@ -9,5 +9,5 @@ Feature: Validate request/response to Users API
 
     Examples:
       | name  | job    |
-      | Ayush | leader |
+      | Test | leader |
 
