@@ -1,5 +1,6 @@
 package Utils;
 
+import constants.FilePaths;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -10,12 +11,14 @@ import java.io.PrintStream;
 
 public final class RequestSpecBuilder {
 
-    private RequestSpecBuilder(){}
-
     private static RequestSpecification requestSpecification;
 
-    public static void initRequestSpec(String baseURL){
-        try (PrintStream logFile = FileHandler.getLogFile()) {
+    private RequestSpecBuilder() {
+    }
+
+    public static void initRequestSpec(String baseURL) throws FileNotFoundException {
+        PrintStream logFile=new PrintStream(FilePaths.getLogFilePath());
+        logFile.flush();
             requestSpecification =
                     RestAssured
                             .given()
@@ -24,12 +27,9 @@ public final class RequestSpecBuilder {
                             .urlEncodingEnabled(false)
                             .filter(RequestLoggingFilter.logRequestTo(logFile))
                             .filter(ResponseLoggingFilter.logResponseTo(logFile));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
-    }
 
-    public static RequestSpecification getRequestSpec(){
+    public static RequestSpecification getRequestSpec() {
         return requestSpecification;
     }
 }

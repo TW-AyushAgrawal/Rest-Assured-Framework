@@ -1,13 +1,13 @@
 package contexts;
 
 public class TestContext {
-    private static ScenarioContext scenarioContext;
+    private final ScenarioContext scenarioContext;
 
-    public TestContext(){
+    public TestContext() {
         scenarioContext = new ScenarioContext();
     }
 
-    public static ScenarioContext getScenarioContext() {
+    public ScenarioContext getScenarioContext() {
         return scenarioContext;
     }
 }

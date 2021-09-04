@@ -8,6 +8,6 @@ Feature: Validate request/response to Users API
     And "job" in status response should be "<job>"
 
     Examples:
-      | name  | job    |
+      | name | job    |
       | Test | leader |
 

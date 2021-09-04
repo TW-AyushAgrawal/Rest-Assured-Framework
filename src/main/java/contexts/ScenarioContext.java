@@ -1,22 +1,22 @@
 package contexts;
 
-import enums.Context;
+import enums.APIResources;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ScenarioContext {
-    private Map<String, Object> scenarioContext;
+    private final Map<String, Object> scenarioContext;
 
-    public ScenarioContext(){
+    public ScenarioContext() {
         scenarioContext = new HashMap<>();
     }
 
-    public void setContext(Context key, Object value) {
+    public void setContext(APIResources key, Object value) {
         scenarioContext.put(key.toString(), value);
     }
 
-    public Object getContext(Context key){
+    public Object getContext(APIResources key) {
         return scenarioContext.get(key.toString());
     }
 }

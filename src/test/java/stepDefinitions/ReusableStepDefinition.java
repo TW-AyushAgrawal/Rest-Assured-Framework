@@ -3,9 +3,7 @@ package stepDefinitions;
 import Utils.ResponseExtractor;
 import contexts.TestContext;
 import enums.APIResources;
-import enums.Context;
 import factory.RequestFactory;
-import io.cucumber.java.After;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
@@ -17,7 +15,7 @@ public class ReusableStepDefinition {
     TestContext testContext;
     private Response response;
 
-    public ReusableStepDefinition(TestContext context){
+    public ReusableStepDefinition(TestContext context) {
         testContext = context;
     }
 
@@ -30,8 +28,9 @@ public class ReusableStepDefinition {
     public void userCallsWith(String requestType, String params) {
         response = RequestFactory.executeRequest(requestType, params, APIResources.valueOf(requestType).getResource());
 
-        if(requestType.equalsIgnoreCase("POST_USER_REQUEST")) {
-            testContext.getScenarioContext().setContext(Context.USER_ID, ResponseExtractor.getValue(response, "id"));
+        if (requestType.equalsIgnoreCase("POST_USER_REQUEST")) {
+            testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
+            System.out.println("Newly Created user Id is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
         }
     }
 
@@ -42,11 +41,7 @@ public class ReusableStepDefinition {
 
     @When("User calls {string}")
     public void userCalls(String requestType) {
-        response = RequestFactory.executeRequest(requestType, testContext.getScenarioContext().getContext(Context.USER_ID).toString(), APIResources.valueOf(requestType).getResource());
-    }
 
-//    @After(value = "@Add_User")
-//    public void afterScenario(){
-//        RequestFactory.executeRequest("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(Context.USER_ID).toString(), APIResources.valueOf("DELETE_USER_REQUEST").getResource());
-//    }
+        response = RequestFactory.executeRequest(requestType, testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), APIResources.valueOf(requestType).getResource());
+    }
 }
