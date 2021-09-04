@@ -1,7 +1,6 @@
 package hooks;
 
 import Utils.HttpMethodUtils;
-import Utils.Properties;
 import Utils.RequestSpecBuilder;
 import contexts.TestContext;
 import enums.APIResources;
@@ -17,7 +16,7 @@ public final class Hooks {
 
     @Before
     public void setEndpoint() throws Throwable {
-        RequestSpecBuilder.initRequestSpec(Properties.getProperty("base_url"));
+        RequestSpecBuilder.initRequestSpec(APIResources.valueOf("base_url").getResource());
     }
 
     @After(value = "@Add_User")
