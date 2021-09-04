@@ -17,17 +17,17 @@ public final class RequestSpecBuilder {
     }
 
     public static void initRequestSpec(String baseURL) throws FileNotFoundException {
-        PrintStream logFile=new PrintStream(FilePaths.getLogFilePath());
+        PrintStream logFile = new PrintStream(FilePaths.getLogFilePath());
         logFile.flush();
-            requestSpecification =
-                    RestAssured
-                            .given()
-                            .baseUri(baseURL)
-                            .header("Content-Type", "application/json")
-                            .urlEncodingEnabled(false)
-                            .filter(RequestLoggingFilter.logRequestTo(logFile))
-                            .filter(ResponseLoggingFilter.logResponseTo(logFile));
-        }
+        requestSpecification =
+                RestAssured
+                        .given()
+                        .baseUri(baseURL)
+                        .header("Content-Type", "application/json")
+                        .urlEncodingEnabled(false)
+                        .filter(RequestLoggingFilter.logRequestTo(logFile))
+                        .filter(ResponseLoggingFilter.logResponseTo(logFile));
+    }
 
     public static RequestSpecification getRequestSpec() {
         return requestSpecification;

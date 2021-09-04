@@ -1,10 +1,10 @@
 package hooks;
 
+import Utils.HttpMethodUtils;
 import Utils.Properties;
 import Utils.RequestSpecBuilder;
 import contexts.TestContext;
 import enums.APIResources;
-import factory.RequestFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
@@ -22,7 +22,7 @@ public final class Hooks {
 
     @After
     public void afterScenario() {
-        RequestFactory.executeRequest("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), APIResources.valueOf("DELETE_USER_REQUEST").getResource());
+        HttpMethodUtils.delete("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString());
         System.out.println("Deleted the newly created user id : " + testContext.getScenarioContext().getContext(APIResources.USER_ID).toString());
     }
 }
