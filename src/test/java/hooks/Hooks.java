@@ -15,13 +15,13 @@ public final class Hooks {
     }
 
     @Before
-    public void setEndpoint() throws Throwable {
+    public void setEndpoint(){
         RequestSpecBuilder.initRequestSpec(APIResources.valueOf("base_url").getResource());
     }
 
     @After(value = "@Add_User")
-    public void afterScenario() {
-        HttpMethodUtils.delete("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString());
+    public void afterAddScenario() {
+        HttpMethodUtils.delete("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), "id");
         System.out.println("Deleted the newly created user id : " + testContext.getScenarioContext().getContext(APIResources.USER_ID).toString());
     }
 }

@@ -15,8 +15,8 @@ public class HttpMethodUtils {
                 .post(APIResources.valueOf(endPoint).getResource());
     }
 
-    public static Response delete(String endPoint, String id) {
-        return RequestSpecBuilder.getRequestSpec().pathParams("id", id)
+    public static Response delete(String endPoint, String id, String paramKey) {
+        return RequestSpecBuilder.getRequestSpec().pathParams(paramKey, id)
                 .delete(APIResources.valueOf(endPoint).getResource());
     }
 }
