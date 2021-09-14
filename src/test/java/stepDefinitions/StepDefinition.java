@@ -25,11 +25,13 @@ public class StepDefinition {
         assertEquals(statusCode, response.statusCode());
     }
 
-    @When("User calls {string} with {string} and {string}")
-    public void userCallsWith(String requestType, String name, String job) {
-        response = HttpMethodUtils.post(requestType, TestDataBuilder.getPostUserData(name, job));
-        testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
-        System.out.println("Newly Created user Id is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
+    @When("User calls {string} with {string}")
+    public void userCallsWith(String requestType, String params) {
+        if(requestType.equalsIgnoreCase("POST_USER_REQUEST")){
+            response = HttpMethodUtils.post(requestType, TestDataBuilder.getPostUserData(params.split(",")[0], params.split(",")[1]));
+            testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
+            System.out.println("Newly Created user Id is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
+        }
     }
 
     @Then("{string} in status response should be {string}")
