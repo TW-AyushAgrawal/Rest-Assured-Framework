@@ -1,7 +1,7 @@
 package parallel.stepDefinitions;
 
-import Utils.HttpMethodUtils;
-import Utils.ResponseExtractor;
+import utils.HttpMethodUtils;
+import utils.ResponseExtractor;
 import contexts.TestContext;
 import data.TestDataBuilder;
 import enums.APIResources;

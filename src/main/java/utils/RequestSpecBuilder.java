@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import constants.FilePaths;
 import io.restassured.RestAssured;

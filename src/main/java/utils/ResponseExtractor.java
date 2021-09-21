@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import io.restassured.response.Response;
 
