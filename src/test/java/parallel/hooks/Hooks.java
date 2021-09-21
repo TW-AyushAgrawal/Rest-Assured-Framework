@@ -25,9 +25,9 @@ public final class Hooks {
 
     @Before(value = "@Delete_User")
     public void hitPostEndpoint(){
-        response = HttpMethodUtils.post("POST_USER_REQUEST", TestDataBuilder.getPostUserData("Test1", "job"));
+        response = HttpMethodUtils.post("POST_USER_REQUEST", TestDataBuilder.getPostUserData("\"Test1\", \"job\""));
         testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
-        System.out.println("Newely created user is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
+        System.out.println("Newly created user is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
     }
 
     @After(value = "@Add_User")

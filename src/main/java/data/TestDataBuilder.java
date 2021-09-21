@@ -3,7 +3,8 @@ package data;
 import pojo.PostUsers;
 
 public final class TestDataBuilder {
-    public static PostUsers getPostUserData(String name, String job) {
-        return PostUsers.builder().name(name).job(job).build();
+    public static PostUsers getPostUserData(String input) {
+        String[] inputs = input.split(",");
+        return PostUsers.builder().name(inputs[0]).job(inputs[1]).build();
     }
 }

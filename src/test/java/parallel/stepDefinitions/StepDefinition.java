@@ -28,7 +28,7 @@ public class StepDefinition {
     @When("User calls {string} with {string}")
     public void userCallsWith(String requestType, String params) {
         if(requestType.equalsIgnoreCase("POST_USER_REQUEST")){
-            response = HttpMethodUtils.post(requestType, TestDataBuilder.getPostUserData(params.split(",")[0], params.split(",")[1]));
+            response = HttpMethodUtils.post(requestType, TestDataBuilder.getPostUserData(params));
             testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
             System.out.println("Newly Created user Id is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
         }
