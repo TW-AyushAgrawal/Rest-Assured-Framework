@@ -1,14 +1,19 @@
 package parallel.hooks;
 
-import utils.HttpMethodUtils;
-import utils.RequestSpecBuilder;
-import utils.ResponseExtractor;
 import contexts.TestContext;
-import data.TestDataBuilder;
 import enums.APIResources;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
+import pojo.PostUsers;
+import utils.HttpMethodUtils;
+import utils.RequestSpecBuilder;
+import utils.ResponseExtractor;
+
+import java.io.IOException;
+
+import static constants.FilePaths.getUsersJsonFilePath;
+import static utils.ObjectMapperUtils.getObjectFromJSON;
 
 public final class Hooks {
     TestContext testContext;
@@ -24,8 +29,8 @@ public final class Hooks {
     }
 
     @Before(value = "@Delete_User")
-    public void hitPostEndpoint(){
-        response = HttpMethodUtils.post("POST_USER_REQUEST", TestDataBuilder.getPostUserData("\"Test1\", \"job\""));
+    public void hitPostEndpoint() throws IOException {
+        response = HttpMethodUtils.post("POST_USER_REQUEST", getObjectFromJSON(getUsersJsonFilePath(), PostUsers.class));
         testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
         System.out.println("Newly created user is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
     }

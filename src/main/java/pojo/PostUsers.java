@@ -1,10 +1,11 @@
 package pojo;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@Getter
 @Builder
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostUsers {
     private String name;
     private String job;
