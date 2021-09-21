@@ -32,7 +32,7 @@ public final class Hooks {
 
     @After(value = "@Add_User")
     public void afterAddScenario() {
-        HttpMethodUtils.delete("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), "id");
+        response=HttpMethodUtils.delete("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), "id");
         System.out.println("Deleted the newly created user id : " + testContext.getScenarioContext().getContext(APIResources.USER_ID).toString());
     }
 }
