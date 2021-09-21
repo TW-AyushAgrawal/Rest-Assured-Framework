@@ -1,6 +1,7 @@
 package utils;
 
 
+import builders.RequestSpecBuilder;
 import enums.APIResources;
 import io.restassured.response.Response;
 

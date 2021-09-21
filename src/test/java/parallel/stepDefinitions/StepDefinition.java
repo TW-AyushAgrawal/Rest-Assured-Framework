@@ -1,9 +1,9 @@
 package parallel.stepDefinitions;
 
 import utils.HttpMethodUtils;
-import utils.ResponseExtractor;
+import utils.ResponseExtractorUtils;
 import contexts.TestContext;
-import data.TestDataBuilder;
+import builders.TestDataBuilder;
 import enums.APIResources;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,7 +29,7 @@ public class StepDefinition {
     public void userCallsWith(String requestType, String params) {
         if(requestType.equalsIgnoreCase("POST_USER_REQUEST")){
             response = HttpMethodUtils.post(requestType, TestDataBuilder.getPostUserData(params));
-            testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
+            testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractorUtils.getValue(response, "id"));
             System.out.println("Newly Created user Id is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
         }
         else if(requestType.equalsIgnoreCase("DELETE_USER_REQUEST")){
@@ -41,6 +41,6 @@ public class StepDefinition {
 
     @Then("{string} in status response should be {string}")
     public void in_status_response_should_be(String param, String value) {
-        assertEquals(value, ResponseExtractor.getValue(response, param));
+        assertEquals(value, ResponseExtractorUtils.getValue(response, param));
     }
 }

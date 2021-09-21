@@ -7,8 +7,8 @@ import io.cucumber.java.Before;
 import io.restassured.response.Response;
 import pojo.PostUsers;
 import utils.HttpMethodUtils;
-import utils.RequestSpecBuilder;
-import utils.ResponseExtractor;
+import builders.RequestSpecBuilder;
+import utils.ResponseExtractorUtils;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public final class Hooks {
     @Before(value = "@Delete_User")
     public void hitPostEndpoint() throws IOException {
         response = HttpMethodUtils.post("POST_USER_REQUEST", getObjectFromJSON(getUsersJsonFilePath(), PostUsers.class));
-        testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractor.getValue(response, "id"));
+        testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractorUtils.getValue(response, "id"));
         System.out.println("Newly created user is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
     }
 
