@@ -12,7 +12,7 @@ Feature: Validate request/response to Users API
       | Test | leader |
 
   @Delete_User
-  Scenario: Should be able to add a user
+  Scenario: Should be able to delete a user
     When User calls "DELETE_USER_REQUEST" with "id"
     Then API call should return status code 204
 
