@@ -32,12 +32,10 @@ public final class Hooks {
     public void hitPostEndpoint() throws IOException {
         response = HttpMethodUtils.post("POST_USER_REQUEST", getObjectFromJSON(getUsersJsonFilePath(), PostUsers.class));
         testContext.getScenarioContext().setContext(APIResources.USER_ID, ResponseExtractorUtils.getValue(response, "id"));
-        System.out.println("Newly created user is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
     }
 
     @After(value = "@Add_User")
     public void afterAddScenario() {
         response=HttpMethodUtils.delete("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), "id");
-        System.out.println("Deleted the newly created user id : " + testContext.getScenarioContext().getContext(APIResources.USER_ID).toString());
     }
 }
