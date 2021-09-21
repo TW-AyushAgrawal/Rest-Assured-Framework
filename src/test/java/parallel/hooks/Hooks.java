@@ -1,4 +1,4 @@
-package hooks;
+package parallel.hooks;
 
 import Utils.HttpMethodUtils;
 import Utils.RequestSpecBuilder;

@@ -1,4 +1,4 @@
-package stepDefinitions;
+package parallel.stepDefinitions;
 
 import Utils.HttpMethodUtils;
 import Utils.ResponseExtractor;
