@@ -33,7 +33,7 @@ public class StepDefinition {
             System.out.println("Newly Created user Id is " + testContext.getScenarioContext().getContext(APIResources.USER_ID));
         }
         else if(requestType.equalsIgnoreCase("DELETE_USER_REQUEST")){
-            response=HttpMethodUtils.delete("DELETE_USER_REQUEST", testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), params);
+            response=HttpMethodUtils.delete(requestType, testContext.getScenarioContext().getContext(APIResources.USER_ID).toString(), params);
             System.out.println("Deleted new User is "+ testContext.getScenarioContext().getContext(APIResources.USER_ID));
 
         }
